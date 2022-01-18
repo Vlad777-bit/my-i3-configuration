@@ -5,8 +5,8 @@ set $mod Mod4
 exec --no-startup-id nitrogen --restore
 exec --no-startup-id numlockx
 exec --no-startup-id picom -b
-#exec --no-startup-id polybar example
-exec_always --no-startup-id /home/hacker/.config/polybar/launch.sh
+exec --no-startup-id polybar example
+exec_always --no-startup-id /home/i3/.config/polybar/launch.sh
 
 # ГОРЯЧИЕ КЛАВИШИ
 #bindsym $mod+F1 exec inkscape
@@ -238,4 +238,4 @@ bindsym $mod+r mode "resize"
 exec --no-startup-id setxkbmap us,ru -option 'grp:caps_switch'
 
 # NetworkManager applet
-exec --no-startup-id nm-applet
+#exec --no-startup-id nm-applet
