@@ -58,7 +58,7 @@ font-3 = fixed:pixelsize=10;1
 font-4 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-5 = siji:pixelsize=10;1
 font-6 = Material Icons:style=Regular
-font-7 = FontAwesome 5 Free:size=10:style=Solid;3
+font-7 = FontAwesome 6 Free:size=10:style=Solid;3
 
 modules-left = bspwm i3
 modules-center = date
