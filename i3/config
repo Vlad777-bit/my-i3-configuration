@@ -1,15 +1,23 @@
 # КЛАВИША МОДИФИКАТОР
 set $mod Mod4
 
-#АВТОЗАПУСК
+# АВТОЗАПУСК
 exec --no-startup-id nitrogen --restore
 exec --no-startup-id numlockx
+#exec --no-startup-id dunst
 
-# Убирает тиринг
+# ЗАПУСК POLKIT
+exec --no-startup-id cd /usr/lib/polkit-gnome && ./polkit-gnome-authentication-agent-1
+
+# УБИРАЕТ ТИРИНГ
 exec --no-startup-id picom -b --backend glx --vsync --xrender-sync-fence --glx-no-rebind-pixmap --use-damage --glx-no-stencil
 
-exec --no-startup-id polybar example
-exec_always --no-startup-id /home/i3/.config/polybar/launch.sh
+# ПЕРЕКЛЮЧЕНИЕ РАСКЛАДКИ КЛАВИАТУРЫ
+exec --no-startup-id setxkbmap us,ru -option 'grp:caps_switch'
+
+#exec --no-startup-id polybar example
+#exec_always --no-startup-id /home/i3/.config/polybar/launch.sh
+exec --no-startup-id bash ~/.config/polybar/launch.sh --blocks
 
 # ВКЛЮЧИТЬ КАСАНИЕ НА TOUCHPAD
 exec --no-startup-id xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Tapping Enabled" 1
@@ -21,14 +29,13 @@ exec --no-startup-id redshift -P -O 3500
 #bindsym $mod+F1 exec inkscape
 
 # ПРИВЯЗКА К ВОРКСПЕЙСАМ
-#assign [class="firefox"] $ws1
-#assign [class="Blender"] $ws2
-#assign [class="Inkscape"] $ws3
-#assign [class="Pavucontrol"] $ws4
-#assign [class="Nitrogen"] $ws4
-#assign [class="Lxappearance"] $ws4
-#assign [class="Steam"] $ws9
-
+assign [class="Chromium"] $ws1
+assign [class="LibreWolf"] $ws1
+assign [class="code-oss"] $ws3
+assign [class="jetbrains-phpstorm"] $ws3
+assign [class="Pcmanfm"] $ws4
+assign [class="TelegramDesktop"] $ws6
+assign [class="zoom"] $ws8
 # ПРИЛОЖЕНИЯ В ФОКУСЕ
 #assign [class="firefox"] $ws1
 #assign [class="Blender"] $ws2
@@ -63,7 +70,9 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # ЗАПУСК DMENU ИЛИ ROFI
-bindsym $mod+d exec --no-startup-id rofi -show run
+bindsym $mod+d exec --no-startup-id rofi -show drun
+#bindsym $mod+d exec --no-startup-id rofi -no-config -no-lazy-grab -show drun -modi drun -theme ~/.config/polybar/blocks/scripts/rofi/launcher.rasi
+
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -155,16 +164,16 @@ client.placeholder		#d1d9ec #d1d9ec #011b28 #011b28
 #	client.urgent — окно требует внимания (всплывающее) 
 
 # ИМЕНА ВОРКСПЕЙСОВ И ИХ НОМЕРА
-set $ws1 "1_"
-set $ws2 "2_"
-set $ws3 "3_"
-set $ws4 "4_"
-set $ws5 "5_#"
-set $ws6 "6_#"
-set $ws7 "7_#"
-set $ws8 "8_#"
+set $ws1 "1_"
+set $ws2 "2_"
+set $ws3 "3_"
+set $ws4 "4_"
+set $ws5 "5_"
+set $ws6 "6_"
+set $ws7 "7_"
+set $ws8 "8_"
 set $ws9 "9_"
-set $ws10 "10_#"
+set $ws10 "10_"
 
 # ПЕРЕКЛЮЧЕНИЕ ВОРКСПЕЙСОВ
 bindsym $mod+1 workspace number $ws1
@@ -224,27 +233,3 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
-
-# НАСТРОЙКИ I3BAR
-#bar {
-#	position top
-#	tray_padding 10
-#	workspace_min_width 40
-#	font pango:Ubuntu 12
-#       status_command i3status
-#	colors {
-#  		       	background #282a33
-#			statusline #e1e2e6
-#			separator #282a33
-#
-#		focused_workspace   #e1e2e6 #e1e2e6 #282a33
-#		active_workspace    #373E4D #373E4D #373E4D
-#		inactive_workspace  #282a33 #282a33 #e1e2e6
-#		urgent_workspace    #ff0066 #ff0066 #ffffff
-#		binding_mode        #ff0066 #ff0066 #ffffff
-#		}
-#
-#}
-
-# Переключение раскладки клавиатуры
-exec --no-startup-id setxkbmap us,ru -option 'grp:caps_switch'
